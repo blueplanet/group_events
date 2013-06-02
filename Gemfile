@@ -12,11 +12,13 @@ end
 
 group :development do
   gem 'guard-livereload'
+  gem 'guard-rspec'
   gem 'growl'
 end
 
 group :test do
   gem 'coveralls', require: false
+  gem 'capybara'
 end
 
 gem 'sass-rails', '~> 4.0.0.rc1'
