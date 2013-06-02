@@ -1,0 +1,37 @@
+// Place all the styles related to the ui controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#header {
+  border-bottom: 1px solid gray;
+}
+
+#main {
+  width: 70%;
+  float: left;
+}
+
+#members {
+  width: 30%;
+  float: right;
+}
+
+#fooder {
+  clear: right;
+}
+
+img.icon {
+  width: 25px;
+  // float: left;
+}
+
+.user_info {
+  // display: inline-block;
+  margin-right: 10px;
+  border-left: 1px solid gray;
+  padding-left: 5px;
+  a {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
