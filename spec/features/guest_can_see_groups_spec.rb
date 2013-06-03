@@ -20,5 +20,4 @@ feature 'ゲストは、グループ一覧を見える' do
       end
     end
   end
-    
 end
