@@ -1,0 +1,6 @@
+h1 グループ一覧
+
+#groups
+  ul
+    - @groups.each do |group|
+      = link_to group.name
