@@ -8,17 +8,19 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'capybara'
 end
 
 group :development do
   gem 'guard-livereload'
   gem 'guard-rspec'
   gem 'growl'
+  gem 'pry-rails'
+  gem 'launchy'
 end
 
 group :test do
   gem 'coveralls', require: false
-  gem 'capybara'
 end
 
 group :production do

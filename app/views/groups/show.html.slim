@@ -1,0 +1,26 @@
+#header
+  img#logo src="#{@group.img_url}"
+  h1#title = @group.name
+
+#main
+  #description = @group.description
+  #events
+    h2 イベント一覧
+    ul
+      li
+        |2013/05/11 14:00 - 16:00 
+        a href='/ui/event' 学习会：Spring框架介绍
+      li 
+        |2013/06/01 14:00 - 16:00 
+        a href='/ui/event' 学习会：Rails简单介绍
+
+#members
+  h2 メンバー一覧
+  .user_info
+    a href='http://twitter.com/#!/blueplanet42'
+      img.icon src='https://si0.twimg.com/profile_images/1577272312/Andromeda_Galaxy_normal.png'
+    a href='http://twitter.com/#!/blueplanet42' @blueplanet42
+  .user_info
+    a href='http://twitter.com/#!/blueplanet42'
+      img.icon src='https://si0.twimg.com/profile_images/1577272312/Andromeda_Galaxy_normal.png'
+    a href='http://twitter.com/#!/blueplanet42' @blueplanet42
