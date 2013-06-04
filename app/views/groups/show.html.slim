@@ -7,12 +7,15 @@
   #events
     h2 イベント一覧
     ul
-      li
-        |2013/05/11 14:00 - 16:00 
-        a href='/ui/event' 学习会：Spring框架介绍
-      li 
-        |2013/06/01 14:00 - 16:00 
-        a href='/ui/event' 学习会：Rails简单介绍
+      - @group.events.each do |event|
+        li
+          = l event.start_at
+          '
+          | - 
+          '
+          = l event.end_at
+          '
+          = link_to event.title
 
 #members
   h2 メンバー一覧
