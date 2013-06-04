@@ -10,12 +10,21 @@ feature 'ゲストは、グループのイベント一覧を見える' do
   end
 
   context "グループページへアクセスすると" do
-    scenario 'グループのイベント一覧が表示される' do
+    before do
       visit group_path(group)
+    end
 
+    scenario 'グループのイベント一覧が表示される' do
       group.events.each do |event|
         page.should have_content event.title
       end
+    end
+
+    scenario 'あるイベントのタイトルをクリックすると、イベントページへ遷移される' do
+      event = group.events.sample
+      click_link "#{event.title}"
+
+      page.current_path.should == group_event_path(group, event)
     end
   end
 end
