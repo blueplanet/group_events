@@ -219,8 +219,8 @@ DEPENDENCIES
   guard-rspec
   jbuilder (~> 1.0.1)
   jquery-rails
-  pg
   launchy
+  pg
   pry-rails
   rails (= 4.0.0.rc1)
   rspec-rails
