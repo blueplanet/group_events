@@ -15,7 +15,7 @@
           '
           = l event.end_at
           '
-          = link_to event.title
+          = link_to event.title, group_event_path(@group, event)
 
 #members
   h2 メンバー一覧
