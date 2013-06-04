@@ -9,5 +9,13 @@ feature 'ゲストは、グループ詳細を見える' do
     scenario 'グループ名称が表示される' do
       page.should have_content group.name
     end
+
+    scenario 'グループ説明が表示される' do
+      page.should have_content group.description
+    end
+
+    scenario 'グループのイメージが表示される' do
+      page.should have_css "img[src='#{group.img_url}']"
+    end
   end
 end

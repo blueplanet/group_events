@@ -1,12 +1,9 @@
 #header
-  img#logo src='http://www.ruby-lang.org/images/logo.gif'
+  img#logo src="#{@group.img_url}"
   h1#title = @group.name
 
 #main
-  #description
-    ul
-      li 毎週水曜日オンラインでRubyやRails関連の本を輪読する勉強会です。
-      li 基本的には、２２時〜２３時の一時間、場合によって調整される可能性もある
+  #description = @group.description
   #events
     h2 イベント一覧
     ul
