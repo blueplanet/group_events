@@ -7,4 +7,10 @@ html
     = csrf_meta_tags
 
   body
+    #nav
+      - if current_user
+        img src="#{current_user.img_url}"
+        = current_user.name
+      - else
+        = link_to 'Twitterでログイン', '/auth/twitter'
     = yield
