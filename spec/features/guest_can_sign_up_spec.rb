@@ -13,7 +13,12 @@ feature 'ゲストは、サインアップ出来る' do
 
   context 'Twitterでログインリンクをクリックすると' do
     context "登録してなかった場合" do
-      scenario 'ユーザが１つ作成される'
+      scenario 'ユーザが１つ作成される' do
+        User.delete_all
+        expect {
+          click_link "Twitterでログイン"
+        }.to change(User, :count).by(1)
+      end
     end
 
     context "登録した場合" do
@@ -26,6 +31,7 @@ feature 'ゲストは、サインアップ出来る' do
       scenario 'ユーザ名称が表示される' do
         page.should have_content tw_hash[:name]
       end
+
       scenario 'ユーザのアイコンが表示される'
     end
   end

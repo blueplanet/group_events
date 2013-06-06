@@ -1,6 +1,11 @@
 class SessionsController < ApplicationController
   def create
-    session[:user_name] = request.env["omniauth.auth"]["info"]["name"]
+    auth = request.env["omniauth.auth"]
+
+    if user = User.where(uid: auth["uid"])
+    else
+      User.create_with_omniauth auth
+    end
 
     redirect_to root_path
   end
