@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 feature 'ゲストは、サインアップ出来る' do
-
   before do
     OmniAuth.config.add_mock :twitter, tw_hash
     visit root_path
@@ -22,17 +21,24 @@ feature 'ゲストは、サインアップ出来る' do
     end
 
     context "登録した場合" do
-      scenario 'ユーザが追加されない'
+      before { User.create_with_omniauth tw_hash } 
+      scenario 'ユーザが追加されない' do
+        expect {
+          click_link "Twitterでログイン"
+        }.to change(User, :count).by(0)
+      end
     end
 
     context "ログインが成功した場合" do
       before { click_link "Twitterでログイン"}
 
       scenario 'ユーザ名称が表示される' do
-        page.should have_content tw_hash[:name]
+        page.should have_content tw_hash[:info][:name]
       end
 
-      scenario 'ユーザのアイコンが表示される'
+      scenario 'ユーザのアイコンが表示される' do
+        page.should have_css "img[src='#{tw_hash[:info][:image]}']"
+      end
     end
   end
 end
@@ -42,7 +48,8 @@ def tw_hash
     provider: 'twitter',
     uid: '12345',
     info: {
-      name: 'test_twitter_user'
+      name: 'test_twitter_user',
+      image: 'test.jpg'
     }
   }
 end

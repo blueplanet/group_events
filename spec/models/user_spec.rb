@@ -20,6 +20,12 @@ describe User do
       }.to change(User, :count).by(1)
     end
 
+    it "ユーザのUIDが保存される" do
+      User.create_with_omniauth auth
+
+      User.last.uid.should == auth[:uid]
+    end
+
     it "ユーザ名称が保存される" do
       User.create_with_omniauth auth
 
