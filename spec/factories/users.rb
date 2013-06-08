@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :user do
-    name "MyString"
-    img_url "MyString"
-    uid "MyString"
+    name "test user"
+    img_url "test_user.jpg"
+    uid "12345"
   end
 end

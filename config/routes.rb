@@ -1,6 +1,10 @@
 GroupEvents::Application.routes.draw do
   resources :groups, only: [:index, :show] do
     resources :events, only: [:show]
+
+    member do
+      get "join", controller: "groups", action: "join"
+    end
   end
 
   get "/auth/:provider/callback", controller: 'sessions', action: 'create'
