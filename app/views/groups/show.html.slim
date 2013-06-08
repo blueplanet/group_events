@@ -19,11 +19,8 @@
 
 #members
   h2 メンバー一覧
-  .user_info
-    a href='http://twitter.com/#!/blueplanet42'
-      img.icon src='https://si0.twimg.com/profile_images/1577272312/Andromeda_Galaxy_normal.png'
-    a href='http://twitter.com/#!/blueplanet42' @blueplanet42
-  .user_info
-    a href='http://twitter.com/#!/blueplanet42'
-      img.icon src='https://si0.twimg.com/profile_images/1577272312/Andromeda_Galaxy_normal.png'
-    a href='http://twitter.com/#!/blueplanet42' @blueplanet42
+  - @group.members.each do |member|
+    .user_info
+      a href="#{member.img_url}"
+        img.icon src="#{member.img_url}"
+      a href="#" = member.name
