@@ -16,4 +16,10 @@ feature 'ゲストは、グループのメンバー一覧を見える' do
       page.should have_content member.name
     end
   end
+
+  scenario 'グループメンバーのアイコンが表示される' do
+    group.members.each do |member|
+      page.should have_css "img[src='#{member.img_url}']"
+    end
+  end
 end
