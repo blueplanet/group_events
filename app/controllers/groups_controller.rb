@@ -5,7 +5,12 @@ class GroupsController < ApplicationController
   end
 
   def join
-    redirect_to group_path(@group) unless current_user
+    if current_user
+      @group.members << current_user
+      @group.save
+    end
+
+    redirect_to group_path(@group)
   end
 
   private
