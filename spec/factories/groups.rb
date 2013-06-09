@@ -6,4 +6,9 @@ FactoryGirl.define do
     sequence(:description) {|n| "description #{n}"}
     sequence(:img_url) {|n| "http://test.com/#{n}.jpg"}
   end
+
+  factory :group_event, class: Group, parent: :seq_group do
+    events { [FactoryGirl.create(:seq_event)] }
+    members { FactoryGirl.create_list(:seq_user, 10) }
+  end
 end

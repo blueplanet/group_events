@@ -4,3 +4,21 @@
 #main
   h2#location = @event.location
   #content = @event.content
+
+#participants
+  h2 参加者一覧
+  ul
+    - @event.participants.each do |user|
+      li = user.name
+
+#absentees
+  h2 欠席者一覧
+  ul
+    - @event.absentees.each do |user|
+      li = user.name
+
+#subtles
+  h2 微妙な者一覧
+  ul
+    - @event.subtles.each do |user|
+      li = user.name

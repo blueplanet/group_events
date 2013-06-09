@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130608093541) do
+ActiveRecord::Schema.define(version: 20130609035708) do
+
+  create_table "event_users", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.integer  "join_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_users", ["event_id"], name: "index_event_users_on_event_id"
+  add_index "event_users", ["user_id"], name: "index_event_users_on_user_id"
 
   create_table "events", force: true do |t|
     t.string   "title"
@@ -39,6 +50,7 @@ ActiveRecord::Schema.define(version: 20130608093541) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "join_type"
   end
 
   add_index "group_users", ["group_id"], name: "index_group_users_on_group_id"
