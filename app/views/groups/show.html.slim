@@ -12,11 +12,7 @@
     ul
       - @group.events.each do |event|
         li
-          = l event.start_at
-          '
-          | - 
-          '
-          = l event.end_at
+          = "#{event.date} #{event.time}"
           '
           = link_to event.title, group_event_path(@group, event)
 
