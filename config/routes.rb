@@ -3,7 +3,6 @@ GroupEvents::Application.routes.draw do
     resources :events, only: [:show] do
       member do
         get 'join', controller: "events", action: "join"
-        get 'absente', controller: "events", action: "absente"
       end
     end
 

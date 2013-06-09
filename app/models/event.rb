@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
 
   belongs_to :group
 
+  has_many :event_users
+
   has_many :participant_users, -> { where join_type: JOIN }, class_name: "EventUser" 
   has_many :participants, through: :participant_users, source: :user
 

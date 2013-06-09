@@ -7,8 +7,9 @@
 
 #actions
   - if current_user && @event.group.member_ids.include?(current_user.id)
-    = link_to "参加", join_group_event_path(@event.group, @event)
-    = link_to "欠席", absente_group_event_path(@event.group, @event)
+    = link_to "参加", join_group_event_path(@group, @event, join_type: Event::JOIN)
+    = link_to "欠席", join_group_event_path(@group, @event, join_type: Event::ABSENCE)
+    = link_to "微妙", join_group_event_path(@group, @event, join_type: Event::SUBTLE)
 
 #participants
   = render 'user_list', title: "参加者一覧", users: @event.participants

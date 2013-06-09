@@ -1,14 +1,8 @@
 class EventsController < ApplicationController
-  before_action :set_group_event, only: [:show, :join, :absente]
+  before_action :set_group_event, only: [:show, :join]
 
   def join
-    @event.participants << current_user
-
-    redirect_to group_event_path(@group, @event)
-  end
-
-  def absente
-    @event.absentees << current_user
+    @event.event_users.create user: current_user, join_type: params[:join_type]
 
     redirect_to group_event_path(@group, @event)
   end

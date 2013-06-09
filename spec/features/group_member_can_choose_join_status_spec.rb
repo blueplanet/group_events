@@ -83,6 +83,24 @@ feature 'グループメンバーは、イベントの参加状況を選択出�
         end
       end
     end
+
+    scenario 'イベントページに微妙リンクが表示される' do
+      page.should have_link '微妙'
+    end
+
+    context "微妙リンクをクリックすると" do
+      before { click_link '微妙' }
+
+      scenario 'イベントページにリダイレクトされる' do
+        page.current_path.should == group_event_path(group, event)
+      end
+
+      scenario '微妙な者一覧に表示される' do
+        within '#subtles' do
+          page.should have_content tw_hash[:info][:name]
+        end
+      end
+    end
   end
 end
 
