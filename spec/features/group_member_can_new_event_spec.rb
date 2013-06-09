@@ -23,6 +23,27 @@ feature 'グループメンバーは、グループにイベント作成出来�
     scenario 'イベント新規画面が表示される' do
       page.current_path.should == new_group_event_path(group)
     end
+
+    context "日付と時間を入力し、新規ボタンをクリックすると" do
+      before do
+        select '2013', from: 'event[date(1i)]'
+        select '6', from: 'event[date(1i)]'
+        select "10", from: "event[date(3i)]"
+        fill_in "event[time]", with: "14:00 - 16:00"
+      end
+
+      scenario 'イベントが新規される' do
+        expect {
+          click_button '新規作成'
+        }.to change(Event, :count).by(1)
+      end
+
+      scenario 'イベントページにリダイレクトされる' do
+        click_button '新規作成'
+
+        page.current_path.should == group_event_path(group, group.events.last)
+      end
+    end
   end
 end
 
