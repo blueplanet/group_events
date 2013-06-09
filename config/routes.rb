@@ -1,6 +1,10 @@
 GroupEvents::Application.routes.draw do
   resources :groups, only: [:index, :show] do
-    resources :events, only: [:show]
+    resources :events, only: [:show] do
+      member do
+        get 'join', controller: "events", action: "join"
+      end
+    end
 
     member do
       get "join", controller: "groups", action: "join"

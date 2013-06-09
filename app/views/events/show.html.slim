@@ -4,3 +4,19 @@
 #main
   h2#location = @event.location
   #content = @event.content
+
+#actions
+  - if current_user && @event.group.member_ids.include?(current_user.id)
+    = link_to "参加", join_group_event_path(@group, @event, join_type: Event::JOIN)
+    = link_to "欠席", join_group_event_path(@group, @event, join_type: Event::ABSENCE)
+    = link_to "微妙", join_group_event_path(@group, @event, join_type: Event::SUBTLE)
+
+#participants
+  = render 'user_list', title: "参加者一覧", users: @event.participants
+
+#absentees
+  = render 'user_list', title: "欠席者一覧", users: @event.absentees
+
+#subtles
+  = render 'user_list', title: "微妙な者一覧", users: @event.subtles
+

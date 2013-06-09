@@ -8,4 +8,8 @@ FactoryGirl.define do
     sequence(:content) {|n| "content #{n}"}
     sequence(:location) {|n| "location #{n}"}
   end
+
+  factory :event_users, class: Event, parent: :seq_event do
+    participants { FactoryGirl.create_list(:seq_user, 10) }
+  end
 end
