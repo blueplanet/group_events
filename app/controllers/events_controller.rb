@@ -3,7 +3,8 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :join]
 
   def join
-    @event.event_users.create user: current_user, join_type: params[:join_type]
+    @event.event_users.create user: current_user, 
+                              join_type: params[:join_type]
 
     redirect_to group_event_path(@group, @event)
   end
