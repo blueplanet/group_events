@@ -44,9 +44,24 @@ feature 'グループメンバーは、グループにイベント作成出来�
         page.current_path.should == group_event_path(group, group.events.last)
       end
     end
+
+    context "時間が入力されてない場合" do
+      before { fill_in "event[time]", with: "" }
+          
+      scenario 'イベントが保存されない' do
+        expect {
+          click_button "新規"
+        }.to change(Event, :count).by(0)
+      end
+
+      scenario '必須入力メッセージが表示される' do
+        click_button "新規"
+
+        page.should have_content '時間を入力してください'
+      end
+    end
   end
 end
-
 
 def tw_hash
   {

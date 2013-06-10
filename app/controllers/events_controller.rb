@@ -9,13 +9,16 @@ class EventsController < ApplicationController
   end
 
   def new
-    @group = Group.find(params[:group_id])
+    @event = @group.events.build
   end
 
   def create
-    event = @group.events.create(post_params)
-
-    redirect_to [@group, event]
+    @event = @group.events.build(post_params)
+    if @event.save
+      redirect_to [@group, @event]
+    else
+      render :new
+    end
   end
 
   private

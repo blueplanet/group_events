@@ -1,6 +1,11 @@
 h1 イベント新規作成
 
-= form_for [@group, @group.events.new]  do |f|
+= form_for [@group, @event]  do |f|
+  - if @event.errors.any?
+    #errors
+      - @event.errors.full_messages.each do |msg|
+        .error = msg
+      
   = f.date_select :date, use_month_numbers: true
   = f.text_field :time
   = f.submit '新規作成'
