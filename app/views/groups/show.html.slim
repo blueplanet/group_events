@@ -3,7 +3,8 @@
   h1#title = @group.name
 
 #links
-  = link_to "参加する", join_group_path(@group)
+  - if current_user && !@group.members.include?(current_user)
+    = link_to "参加する", join_group_path(@group)
 
 #main
   #description = @group.description
