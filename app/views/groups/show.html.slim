@@ -7,18 +7,15 @@
 
 #main
   #description = @group.description
-  #events
-    h2 イベント一覧
-    ul
-      - @group.events.each do |event|
-        li
-          = l event.start_at
-          '
-          | - 
-          '
-          = l event.end_at
-          '
-          = link_to event.title, group_event_path(@group, event)
+#events
+  h2 イベント一覧
+  = link_to "イベント新規", new_group_event_path(@group)
+  ul
+    - @group.events.each do |event|
+      li
+        = "#{event.date} #{event.time}"
+        '
+        = link_to event.title, group_event_path(@group, event)
 
 #members
   h2 メンバー一覧

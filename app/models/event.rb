@@ -15,4 +15,7 @@ class Event < ActiveRecord::Base
 
   has_many :subtle_users, -> { where join_type: SUBTLE }, class_name: "EventUser"
   has_many :subtles, through: :subtle_users, source: :user
+
+  validates :date, presence: true
+  validates :time, presence: {message: "時間を入力してください"}
 end
