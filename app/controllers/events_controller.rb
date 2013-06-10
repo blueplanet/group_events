@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :set_group, only: [:show, :join, :new, :create]
-  before_action :set_event, only: [:show, :join]
+  before_action :set_group, only: [:show, :join, :new, :edit, :create, :update]
+  before_action :set_event, only: [:show, :join, :edit, :update]
 
   def join
     @event.event_users.create user: current_user, 
@@ -22,6 +22,14 @@ class EventsController < ApplicationController
     end
   end
 
+  def update
+    if @event.update(post_params)
+      redirect_to [@group, @event]
+    else
+      render :edit
+    end
+  end
+
   private
   def set_event
     @event = Event.find(params[:id])
@@ -32,6 +40,6 @@ class EventsController < ApplicationController
   end
 
   def post_params
-    params.require(:event).permit(:date, :time, :description)
+    params.require(:event).permit(:date, :time, :content)
   end
 end
