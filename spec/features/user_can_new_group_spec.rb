@@ -59,6 +59,27 @@ feature 'ユーザは、グループを作成出来る' do
           page.should have_content '名称を入力してください'
         end
       end
+
+      context "名称が既に存在している場合" do
+        before do
+          name = 'test group'
+          Group.create name: name
+
+          fill_in "group[name]", with: name
+        end
+
+        scenario 'グループが新規されない' do
+          expect {
+            click_button '新規'
+          }.to_not change(Group, :count)
+        end
+
+        scenario '名称は既に使われているメッセージが表示される' do
+          click_button '新規'
+
+          page.should have_content '名称は既に使われています'
+        end
+      end
     end
   end
 
