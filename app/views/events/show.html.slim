@@ -24,3 +24,13 @@
 #subtles
   = render 'user_list', title: "微妙な者一覧", users: @event.subtles
 
+#kpt
+  #keep
+    h3 Keep
+    = render 'kpts', kpts: @event.keeps
+  #problem
+    h3 Problem
+    = render 'kpts', kpts: @event.problems
+  #try
+    h3 Try
+    = render 'kpts', kpts: @event.trys 
