@@ -1,0 +1,17 @@
+= form_for [@group, @event]  do |f|
+  - if @event.errors.any?
+    #errors
+      - @event.errors.full_messages.each do |msg|
+        .error = msg
+
+  .field
+    = f.label "時間"
+    = f.date_select :date, use_month_numbers: true
+  .field
+    = f.label '時間'
+    = f.text_field :time
+  .field
+    = f.label '内容'
+    = f.text_area :content
+  .actions
+    = f.submit "#{button_text}"

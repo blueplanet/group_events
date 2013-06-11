@@ -1,4 +1,6 @@
 #header
+  - if current_user && @group.members.include?(current_user)
+    = link_to '編集', edit_group_event_path(@group, @event)
   h1#title = @event.title
 
 #main
