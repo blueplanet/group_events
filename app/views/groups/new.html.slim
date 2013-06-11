@@ -1,0 +1,14 @@
+= form_for @group do |f|
+  - if @group.errors.any?
+    .errors
+      ul
+        - @group.errors.full_messages.each do |msg|
+          li = msg
+  .field
+    = f.label "名称"
+    = f.text_field :name
+  .field
+    = f.label '説明'
+    = f.text_area :description
+  .actions
+    = f.submit '新規'

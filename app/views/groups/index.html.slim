@@ -1,5 +1,9 @@
 h1 グループ一覧
 
+.actions
+  - if current_user
+    = link_to 'グループ新規', new_group_path
+
 #groups
   ul
     - @groups.each do |group|

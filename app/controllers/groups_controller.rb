@@ -11,8 +11,25 @@ class GroupsController < ApplicationController
     redirect_to group_path(@group)
   end
 
+  def new
+    @group = Group.new
+  end
+
+  def create
+    @group = Group.new(post_params)
+    if @group.save
+      redirect_to @group
+    else
+      render :new
+    end
+  end
+
   private
   def set_group
     @group = Group.find(params[:id])
+  end
+
+  def post_params
+    params.require(:group).permit(:name, :description)
   end
 end
