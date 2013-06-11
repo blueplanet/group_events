@@ -24,3 +24,10 @@
 #subtles
   = render 'user_list', title: "微妙な者一覧", users: @event.subtles
 
+#kpt
+  #keep
+    h3 Keep
+    ul
+      - @event.keeps.each do |keep|
+        li= keep.content
+        
