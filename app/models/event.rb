@@ -14,8 +14,9 @@ class Event < ActiveRecord::Base
   has_many :subtle_users, -> { where join_type: SUBTLE }, class_name: "EventUser"
   has_many :subtles, through: :subtle_users, source: :user
 
-  has_many :kpts
-  has_many :keeps, -> { where kpt_type: Kpt::Keep}, class_name: 'Kpt'
+  has_many :keeps, -> { where kpt_type: Kpt::KEEP }, class_name: 'Kpt'
+  has_many :problems, -> { where kpt_type: Kpt::PROBLEM }, class_name: 'Kpt'
+  has_many :trys, -> { where kpt_type: Kpt::TRY }, class_name: 'Kpt'
 
   validates :date, presence: true
   validates :time, presence: {message: "時間を入力してください"}

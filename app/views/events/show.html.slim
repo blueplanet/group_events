@@ -27,7 +27,10 @@
 #kpt
   #keep
     h3 Keep
-    ul
-      - @event.keeps.each do |keep|
-        li= keep.content
-        
+    = render 'kpts', kpts: @event.keeps
+  #problem
+    h3 Problem
+    = render 'kpts', kpts: @event.problems
+  #try
+    h3 Try
+    = render 'kpts', kpts: @event.trys 
