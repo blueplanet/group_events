@@ -21,6 +21,44 @@ feature 'ユーザは、グループを作成出来る' do
       scenario 'グループ新規画面が表示される' do
         page.current_path.should == new_group_path
       end
+
+      context "名称と説明を入力し、新規ボタンをクリックすると" do
+        before do
+          fill_in "group[name]", with: "テストグループ"
+          fill_in "group[description]", with: "グループ説明。。。。"
+        end
+
+        scenario 'グループが新規される' do
+          expect {
+            click_button '新規'
+          }.to change(Group, :count).by(1)
+        end
+
+        scenario 'グループ詳細画面が表示される' do
+          click_button '新規'
+
+          page.current_path.should == group_path(Group.last)
+        end
+      end
+
+      context "名称が入力されてない場合" do
+        before do 
+          fill_in "group[name]", with: ""
+          fill_in "group[description]", with: "テスト説明"
+        end
+
+        scenario 'グループが新規されない' do
+          expect {
+            click_button '新規'
+          }.to_not change(Group, :count)
+        end
+
+        scenario '名称を入力してくださいメッセージが表示される' do
+          click_button '新規'
+
+          page.should have_content '名称を入力してください'
+        end
+      end
     end
   end
 
