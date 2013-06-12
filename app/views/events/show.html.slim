@@ -25,6 +25,21 @@
   = render 'user_list', title: "微妙な者一覧", users: @event.subtles
 
 #kpt
+  - if current_user && @group.members.include?(current_user)
+    #new_kpt
+      = form_for @kpt, url: create_kpt_group_event_path(@group, @event) do |f|
+        - if @kpt.errors.any?
+          ul
+            - @kpt.errors.full_messages.each do |msg|
+              li= msg
+        .field
+          = f.label 'タイプ'
+          = f.select :kpt_type, [["Keep", 1], ["Problem", 2], ["Try", 3]]
+        .field
+          = f.label '内容'
+          = f.text_area :content, rows: 3
+        .actions
+          = f.submit '追加'
   #keep
     h3 Keep
     = render 'kpts', kpts: @event.keeps

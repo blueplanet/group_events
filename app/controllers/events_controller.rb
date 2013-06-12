@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :set_group, only: [:show, :join, :new, :edit, :create, :update]
-  before_action :set_event, only: [:show, :join, :edit, :update]
+  before_action :set_group, only: [:show, :join, :new, :edit, :create, :update, :create_kpt]
+  before_action :set_event, only: [:show, :join, :edit, :update, :create_kpt]
 
   def join
     @event.event_users.create user: current_user, 
@@ -11,6 +11,19 @@ class EventsController < ApplicationController
 
   def new
     @event = @group.events.build
+  end
+
+  def show
+    @kpt = @event.kpts.build
+  end
+
+  def create_kpt
+    @kpt = @event.kpts.build(post_kpt_params)
+    if @kpt.save
+      redirect_to [@group, @event]
+    else
+      render :show
+    end
   end
 
   def create
@@ -41,5 +54,9 @@ class EventsController < ApplicationController
 
   def post_params
     params.require(:event).permit(:date, :time, :content)
+  end
+
+  def post_kpt_params
+    params.require(:kpt).permit(:kpt_type, :content)
   end
 end

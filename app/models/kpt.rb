@@ -4,4 +4,6 @@ class Kpt < ActiveRecord::Base
   TRY = 3
   
   belongs_to :event
+
+  validates :content, presence: {message: '内容を入力してください'}
 end
