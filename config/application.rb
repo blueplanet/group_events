@@ -29,5 +29,7 @@ module GroupEvents
       g.helper false
       g.assets false
     end
+
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end

@@ -6,6 +6,7 @@ gem 'slim-rails'
 gem 'omniauth-twitter'
 
 gem 'foreman'
+gem 'bootstrap-sass'
 
 gem 'redcarpet'
 
