@@ -5,6 +5,8 @@ gem 'rails', '4.0.0.rc1'
 gem 'slim-rails'
 gem 'omniauth-twitter'
 
+gem 'foreman'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
