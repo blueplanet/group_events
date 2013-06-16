@@ -7,7 +7,7 @@
   ul
     li = "日付：#{@event.date} #{@event.time}"
     li = "場所：#{@event.location}"
-  p = @event.content
+  p = markdown(@event.content)
 
 #actions
   - if current_user && @event.group.member_ids.include?(current_user.id)
