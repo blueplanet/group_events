@@ -5,20 +5,12 @@ feature 'グループメンバーは、イベントにKPTを記入出来る' do
   let(:event) { group.events.sample }
 
   context "ログインしている場合" do
-    background do
-      OmniAuth.config.add_mock :twitter, tw_hash
-
-      visit '/'
-      click_link 'Twitterでログイン'
-    end
+    include_context 'ログインしている'
 
     context "グループメンバーである場合" do
-      background do
-        visit group_path(group)
-        click_link "参加"
+      include_context 'グループメンバーである'
 
-        visit group_event_path(group, event)
-      end
+      background { visit group_event_path(group, event) }
 
       scenario 'KPTフォームが表示される' do
         page.should have_css "#new_kpt"
@@ -82,15 +74,4 @@ feature 'グループメンバーは、イベントにKPTを記入出来る' do
       page.should_not have_css '#new_kpt'
     end
   end
-end
-
-def tw_hash
-  {
-    provider: 'twitter',
-    uid: '12345',
-    info: {
-      name: 'test_twitter_user',
-      image: 'test.jpg'
-    }
-  }
 end
