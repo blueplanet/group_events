@@ -11,9 +11,9 @@
 
 #actions
   - if current_user && @event.group.member_ids.include?(current_user.id)
-    = link_to "参加", join_group_event_path(@group, @event, join_type: Event::JOIN)
-    = link_to "欠席", join_group_event_path(@group, @event, join_type: Event::ABSENCE)
-    = link_to "微妙", join_group_event_path(@group, @event, join_type: Event::SUBTLE)
+    = link_to_unless @event.participants.include?(current_user), "参加", join_group_event_path(@group, @event, join_type: Event::JOIN)
+    = link_to_unless @event.absentees.include?(current_user), "欠席", join_group_event_path(@group, @event, join_type: Event::ABSENCE)
+    = link_to_unless @event.subtles.include?(current_user), "微妙", join_group_event_path(@group, @event, join_type: Event::SUBTLE)
 
 #participants
   = render 'user_list', title: "参加者一覧", users: @event.participants

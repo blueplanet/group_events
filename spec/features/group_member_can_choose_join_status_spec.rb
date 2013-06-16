@@ -4,11 +4,9 @@ feature 'グループメンバーは、イベントの参加状況を選択出�
   let(:group) { FactoryGirl.create(:group_event) }
   let(:event) { group.events.sample }
 
-  before do
-    OmniAuth.config.add_mock :twitter, tw_hash
-    visit '/'
-    click_link "Twitterでログイン"
+  include_context 'ログインしている'
 
+  before do
     event.participants << FactoryGirl.create_list(:seq_user, 4)
     event.absentees << FactoryGirl.create_list(:seq_user, 5)
     event.subtles << FactoryGirl.create_list(:seq_user, 3)
@@ -41,12 +39,8 @@ feature 'グループメンバーは、イベントの参加状況を選択出�
   end
 
   context "グループメンバーの場合" do
-    before do
-      visit group_path(group)
-      click_link "参加"
-
-      visit group_event_path(group, event)
-    end
+    include_context 'グループメンバーである'
+    before { visit group_event_path(group, event) }
 
     scenario 'イベントページに参加リンクが表示される' do
       page.should have_link '参加'
@@ -102,15 +96,4 @@ feature 'グループメンバーは、イベントの参加状況を選択出�
       end
     end
   end
-end
-
-def tw_hash
-  {
-    provider: 'twitter',
-    uid: '12345',
-    info: {
-      name: 'test_twitter_user',
-      image: 'test.jpg'
-    }
-  }
 end
