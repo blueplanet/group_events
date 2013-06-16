@@ -7,6 +7,8 @@ gem 'omniauth-twitter'
 
 gem 'foreman'
 
+gem 'redcarpet'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
