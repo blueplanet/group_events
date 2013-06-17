@@ -1,14 +1,21 @@
-= form_for @group do |f|
-  - if @group.errors.any?
-    .errors
-      ul
-        - @group.errors.full_messages.each do |msg|
-          li = msg
-  .field
-    = f.label "名称"
-    = f.text_field :name
-  .field
-    = f.label '説明'
-    = f.text_area :description
-  .actions
-    = f.submit '新規'
+.span4
+  = form_for @group, class: 'form' do |f|
+    - if @group.errors.any?
+      .errors
+        ul
+          - @group.errors.full_messages.each do |msg|
+            li = msg
+    legend グループ新規
+    fieldset
+      .control-group
+        = f.label "名称", class: 'control-label'
+        .control
+          = f.text_field :name, class: 'span4'
+      .control-group
+        = f.label '説明', class: 'control-label'
+        .control
+          = f.text_area :description, class: 'span4', rows: 10
+    .form-actions
+      center
+        = f.submit '新規', class: 'btn btn-success'
+        = link_to "キャンセル", groups_path, class: 'btn'
