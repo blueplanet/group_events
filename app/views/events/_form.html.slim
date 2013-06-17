@@ -1,17 +1,24 @@
-= form_for [@group, @event]  do |f|
+= form_for [@group, @event], html: {class: 'span8'}  do |f|
   - if @event.errors.any?
     #errors
       - @event.errors.full_messages.each do |msg|
         .error = msg
 
-  .field
+  .control-group
     = f.label "時間"
-    = f.date_select :date, use_month_numbers: true
-  .field
+    .controls
+      = f.date_select :date, use_month_numbers: true, class: 'span6'
+  .control-group
     = f.label '時間'
-    = f.text_field :time
-  .field
-    = f.label '内容'
-    = f.text_area :content
-  .actions
-    = f.submit "#{button_text}"
+    .controls
+      = f.text_field :time, class: 'span8'
+  .control-group
+    .control-label
+      |内容
+      span.label.label-info.pull-right Markdownで編集出来ます
+    .controls
+      = f.text_area :content, class: 'span8', rows: 20
+  .form-actions
+    center
+      = f.submit "#{button_text}", class: 'btn btn-primary'
+      = link_to "キャンセル", group_path(@group), class: 'btn'

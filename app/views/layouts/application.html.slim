@@ -15,13 +15,12 @@ html
             li
               a href='#' イベント
 
-          ul.nav.pull-right
-            li
-              - if current_user
-                img src="#{current_user.img_url}"
-                = current_user.name
-              - else 
-                = link_to 'Twitterでログイン', '/auth/twitter'
+          .nav.navbar-text.pull-right
+            - if current_user
+              img.icon src="#{current_user.img_url}"
+              = current_user.name
+            - else 
+              = link_to 'Twitterでログイン', '/auth/twitter'
 
     .container
       = yield
