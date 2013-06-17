@@ -1,10 +1,17 @@
-h1 グループ一覧
-
 .actions
   - if current_user
-    = link_to 'グループ新規', new_group_path
+    = link_to 'グループ新規', new_group_path, class: 'btn btn-success'
+
+h3 グループ一覧
 
 #groups
-  ul
+  table.table
+    tr
+      th イベント数
+      th グループ
+      th 最新更新日時
     - @groups.each do |group|
-      = link_to group.name, group
+      tr
+        td= group.events.count
+        td= link_to group.name, group
+        td= time_ago_in_words(group.updated_at)
