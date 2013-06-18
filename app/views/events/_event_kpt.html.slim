@@ -30,6 +30,7 @@
         .control-group
           = f.label '内容'
           .controls
-            = f.text_area :content, rows: 3, class: "span8"
-        center.form-actions
-          = f.submit '追加', class: 'btn btn-primary'
+            = f.text_area :content, rows: 3, class: "span4"
+        .control-group
+          .controls
+            = f.submit '追加', class: 'btn btn-primary'

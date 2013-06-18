@@ -1,6 +1,10 @@
 .row.span8
-  h3.row= "日付：#{@event.date.strftime("%Y-%m-%d")} #{@event.time}"
-  h3.row= "場所：#{@event.location}"
+  .row
+    span.label.label-success 日時 
+    h3= "#{@event.date.strftime("%Y-%m-%d")} #{@event.time}"
+  .row
+    span.label.label-success 場所
+    h3= "場所：#{@event.location}"
   p.row
-    h3.row 内容
+    span.label.label-success 内容
     = markdown(@event.content)
