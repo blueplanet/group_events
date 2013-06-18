@@ -4,23 +4,8 @@
 
 @import "bootstrap";
 
-#main {
-  width: 70%;
-  float: left;
-}
-
-#members {
-  width: 30%;
-  float: right;
-}
-
-#fooder {
-  clear: right;
-}
-
 img.icon {
   width: 25px;
-  // float: left;
 }
 
 h1 {
@@ -30,7 +15,6 @@ h1 {
 }
 
 .user_info {
-  // display: inline-block;
   margin-right: 10px;
   border-left: 1px solid gray;
   padding-left: 5px;
