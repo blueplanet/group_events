@@ -57,7 +57,7 @@ class EventsController < ApplicationController
   end
 
   def post_params
-    params.require(:event).permit(:title, :date, :time, :content)
+    params.require(:event).permit(:title, :date, :time, :location, :content)
   end
 
   def post_kpt_params
