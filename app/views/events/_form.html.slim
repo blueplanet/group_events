@@ -5,7 +5,11 @@
         .error = msg
 
   .control-group
-    = f.label "時間"
+    = f.label "タイトル"
+    .controls
+      = f.text_field :title, class: "span8"
+  .control-group
+    = f.label "日付"
     .controls
       = f.text_field :date, use_month_numbers: true, id: "datepicker"
   .control-group
