@@ -9,6 +9,7 @@ gem 'foreman'
 gem 'bootstrap-sass'
 
 gem 'redcarpet'
+gem 'bootstrap-datepicker-rails'
 
 group :development, :test do
   gem 'sqlite3'

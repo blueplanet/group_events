@@ -7,7 +7,7 @@
   .control-group
     = f.label "時間"
     .controls
-      = f.date_select :date, use_month_numbers: true, class: 'span6'
+      = f.text_field :date, use_month_numbers: true, id: "datepicker"
   .control-group
     = f.label '時間'
     .controls

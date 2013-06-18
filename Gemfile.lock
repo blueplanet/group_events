@@ -28,6 +28,8 @@ GEM
     addressable (2.3.4)
     arel (4.0.0)
     atomic (1.1.9)
+    bootstrap-datepicker-rails (1.1.0.1)
+      railties (>= 3.0)
     bootstrap-sass (2.3.1.0)
       sass (~> 3.2)
     builder (3.1.4)
@@ -226,6 +228,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-datepicker-rails
   bootstrap-sass
   capybara
   coffee-rails (~> 4.0.0)
