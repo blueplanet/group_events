@@ -11,7 +11,7 @@
   .control-group
     = f.label "日付"
     .controls
-      = f.text_field :date, use_month_numbers: true, class: "datepicker"
+      = f.text_field :date, use_month_numbers: true, class: "datepicker", value: format_date_str(f.object.date)
   .control-group
     = f.label '時間'
     .controls

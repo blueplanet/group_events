@@ -9,4 +9,12 @@ module ApplicationHelper
     markdown = Redcarpet::Markdown.new(renderer, options)
     markdown.render(text).html_safe
   end
+
+  def format_date_str(date)
+    if date.nil?
+      date
+    else
+      date.strftime("%Y-%m-%d")
+    end
+  end
 end
