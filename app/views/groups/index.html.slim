@@ -1,10 +1,14 @@
-h1 グループ一覧
-
-.actions
-  - if current_user
-    = link_to 'グループ新規', new_group_path
-
 #groups
-  ul
+  .row
+    h1 
+      |グループ一覧
+      - if current_user
+        = link_to 'グループ新規', new_group_path, class: 'btn btn-primary pull-right'
+  .row
     - @groups.each do |group|
-      = link_to group.name, group
+      .row.group_item
+        .span4= link_to group.name, group
+        .span1
+          center
+            span.badge.badge-success= group.events.count
+        .span2= "#{time_ago_in_words(group.updated_at)} ago"

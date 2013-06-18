@@ -2,15 +2,22 @@ doctype html
 html
   head
     title GroupEvents
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = stylesheet_link_tag    "application", media: "all"
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
 
   body
-    #nav
-      - if current_user
-        img src="#{current_user.img_url}"
-        = current_user.name
-      - else
-        = link_to 'Twitterでログイン', '/auth/twitter'
-    = yield
+    .navbar.navbar-fixed-top.navbar-inverse
+      .navbar-inner
+        .container
+          = link_to "GroupEvents", root_path, class: 'brand'
+
+          .nav.navbar-text.pull-right
+            - if current_user
+              img.icon src="#{current_user.img_url}"
+              = current_user.name
+            - else 
+              = link_to 'Twitterでログイン', '/auth/twitter'
+
+    .container
+      = yield

@@ -14,7 +14,7 @@ feature 'グループメンバーは、Markdownでイベントの説明を書け
 
     click_button '更新'
 
-    within '#main' do
+    within '#detail' do
       page.should have_css 'h1', text: 'テストタイトル'
       page.should have_css 'h2', text: 'サブタイトル'
     end

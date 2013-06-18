@@ -19,9 +19,7 @@ feature 'グループメンバーは、グループにイベント作成出来�
 
     context "日付と時間を入力し、新規ボタンをクリックすると" do
       before do
-        select '2013', from: 'event[date(1i)]'
-        select '6', from: 'event[date(1i)]'
-        select "10", from: "event[date(3i)]"
+        fill_in "event[date]", with: "2013-6-10"
         fill_in "event[time]", with: "14:00 - 16:00"
       end
 

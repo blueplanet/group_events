@@ -25,7 +25,7 @@ feature 'グループメンバーは、グループのイベントを編集出�
 
         context "更新ボタンをクリックすると" do
           scenario '日付が更新される' do
-            select "2012", from: "event[date(1i)]"
+            fill_in "event[date]", with: "2012-6-20"
             click_button '更新'
 
             page.should have_content '2012'            

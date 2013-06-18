@@ -3,6 +3,10 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :join, :edit, :update, :create_kpt]
 
   def join
+    if join_info = @event.event_users.where(user: current_user).first
+      join_info.delete
+    end
+    
     @event.event_users.create user: current_user, 
                               join_type: params[:join_type]
 
@@ -53,7 +57,7 @@ class EventsController < ApplicationController
   end
 
   def post_params
-    params.require(:event).permit(:date, :time, :content)
+    params.require(:event).permit(:title, :date, :time, :location, :content)
   end
 
   def post_kpt_params

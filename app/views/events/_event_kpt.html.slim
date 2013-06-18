@@ -1,0 +1,36 @@
+.row.span8
+  .row
+    .span4
+      .row#keep
+        .alert.alert-success
+          h3 Keep
+          = render 'kpts', kpts: @event.keeps
+      .row#problem
+        .alert.alert-block
+          h3 Problem
+          = render 'kpts', kpts: @event.problems
+    .span4
+      #try
+        .alert.alert-info
+          h3 Try
+          = render 'kpts', kpts: @event.trys 
+
+  - if current_user && @group.members.include?(current_user)
+    hr.row
+    .row#new_kpt
+      = form_for @kpt, url: create_kpt_group_event_path(@group, @event) do |f|
+        - if @kpt.errors.any?
+          ul
+            - @kpt.errors.full_messages.each do |msg|
+              li= msg
+        .control-group
+          = f.label 'タイプ'
+          .controls
+            = f.select :kpt_type, [["Keep", 1], ["Problem", 2], ["Try", 3]]
+        .control-group
+          = f.label '内容'
+          .controls
+            = f.text_area :content, rows: 3, class: "span4"
+        .control-group
+          .controls
+            = f.submit '追加', class: 'btn btn-primary'

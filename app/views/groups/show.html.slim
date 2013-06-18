@@ -1,27 +1,33 @@
-#header
+.row
   img#logo src="#{@group.img_url}"
-  h1#title = @group.name
+  h1#title 
+    = @group.name
+    .pull-right
+      - if current_user && !@group.members.include?(current_user)
+        = link_to "参加する", join_group_path(@group), class: 'btn btn-primary'
 
-#links
-  - if current_user && !@group.members.include?(current_user)
-    = link_to "参加する", join_group_path(@group)
-
-#main
+.row
   #description = @group.description
-#events
-  h2 イベント一覧
-  = link_to "イベント新規", new_group_event_path(@group)
-  ul
-    - @group.events.each do |event|
-      li
-        = "#{event.date} #{event.time}"
-        '
-        = link_to event.title, group_event_path(@group, event)
 
-#members
-  h2 メンバー一覧
-  - @group.members.each do |member|
-    .user_info
-      a href="#{member.img_url}"
+.row
+  #events.span6
+    .row
+      h2 
+        |イベント一覧
+        = link_to "イベント新規", new_group_event_path(@group), class: 'btn btn-primary'
+    - @group.events.each do |event|
+      .row
+        .span1= "#{event.date.strftime("%Y/%m/%d")}"
+        .span3= link_to event.title, group_event_path(@group, event)
+        .span2
+          label.label.label-success= event.keeps.count
+          label.label.label-warning= event.problems.count
+          label.label.label-info= event.trys.count
+
+  #members.span6
+    .row
+      h2 メンバー一覧
+    - @group.members.each do |member|
+      .row.user_info
         img.icon src="#{member.img_url}"
-      a href="#" = member.name
+        = member.name

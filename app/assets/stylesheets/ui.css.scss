@@ -2,31 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#header {
-  border-bottom: 1px solid gray;
-}
+@import "bootstrap";
 
-#main {
-  width: 70%;
-  float: left;
-}
-
-#members {
-  width: 30%;
-  float: right;
-}
-
-#fooder {
-  clear: right;
+.span {
+  margin-left: 0px;
 }
 
 img.icon {
   width: 25px;
-  // float: left;
+}
+
+h1 {
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .user_info {
-  // display: inline-block;
   margin-right: 10px;
   border-left: 1px solid gray;
   padding-left: 5px;
