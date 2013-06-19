@@ -1,12 +1,13 @@
 .span8
-  .row
+  h3
     span.label.label-success 日時 
-    h3= "#{@event.date.strftime("%Y-%m-%d")} #{@event.time}"
-  .row
+    '
+    = "#{@event.date.strftime("%Y-%m-%d")} #{@event.time}"
+  h3
     span.label.label-success 場所
-    h3= "#{@event.location}"
-  p.row
-    span.label.label-success 内容
+    '
+    = "#{@event.location}"
+  p
     = markdown(@event.content)
 .span2#event_users
   = render 'event_users'
