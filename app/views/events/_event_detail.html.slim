@@ -4,7 +4,7 @@
     h3= "#{@event.date.strftime("%Y-%m-%d")} #{@event.time}"
   .row
     span.label.label-success 場所
-    h3= "場所：#{@event.location}"
+    h3= "#{@event.location}"
   p.row
     span.label.label-success 内容
     = markdown(@event.content)

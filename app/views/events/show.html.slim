@@ -23,9 +23,8 @@
         = render 'event_kpt'
   .span3
     #participants
-      = render 'user_list', title: "参加者一覧", users: @event.participants, label_class: "success"
-    #absentees
-      = render 'user_list', title: "欠席者一覧", users: @event.absentees, label_class: "warning"
+      = render 'user_list', title: "参加者一覧", users: @event.participants, label_class: "label-success"
     #subtles
-      = render 'user_list', title: "微妙な者一覧", users: @event.subtles, label_class: "info"
-
+      = render 'user_list', title: "微妙な者一覧", users: @event.subtles, label_class: "label-warning"
+    #absentees
+      = render 'user_list', title: "欠席者一覧", users: @event.absentees, label_class: ""
