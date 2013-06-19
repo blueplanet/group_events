@@ -10,7 +10,11 @@ class EventsController < ApplicationController
     @event.event_users.create user: current_user, 
                               join_type: params[:join_type]
 
-    redirect_to group_event_path(@group, @event)
+
+    respond_to do |format|
+      format.html { redirect_to group_event_path(@group, @event) }
+      format.js
+    end
   end
 
   def new
