@@ -1,8 +1,9 @@
 .row
   h1
-    = @event.title
     - if current_user && @event.group.member_ids.include?(current_user.id)
       = link_to '編集', edit_group_event_path(@group, @event), class: 'btn btn-primary'
+    '  
+    = @event.title
 .row.tabbable.tabs-left
   ul.nav.nav-tabs
     li.active
