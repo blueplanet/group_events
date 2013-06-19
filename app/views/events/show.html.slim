@@ -1,31 +1,17 @@
 .row
   h1
-    = @event.title
-    - if current_user && @group.members.include?(current_user)
-      .btn-group
-        = link_to '編集', edit_group_event_path(@group, @event), class: 'btn btn-primary'
     - if current_user && @event.group.member_ids.include?(current_user.id)
-      .btn-group
-        = link_to_unless @event.participants.include?(current_user), "参加", join_group_event_path(@group, @event, join_type: Event::JOIN), class: 'btn btn-success'
-        = link_to_unless @event.absentees.include?(current_user), "欠席", join_group_event_path(@group, @event, join_type: Event::ABSENCE), class: 'btn'
-        = link_to_unless @event.subtles.include?(current_user), "微妙", join_group_event_path(@group, @event, join_type: Event::SUBTLE), class: 'btn btn-warning'
-.row
-  .span9.tabbable
-    ul.nav.nav-tabs
-      li.active
-        a href='#detail' data-toggle="tab" 詳細情報
-      li
-        a href='#kpt' data-toggle="tab" KPT
-    .tab-content
-      .tab-pane.active#detail
-        = render 'event_detail'
-      .tab-pane#kpt
-        = render 'event_kpt'
-  .span3
-    #participants
-      = render 'user_list', title: "参加者一覧", users: @event.participants, label_class: "success"
-    #absentees
-      = render 'user_list', title: "欠席者一覧", users: @event.absentees, label_class: "warning"
-    #subtles
-      = render 'user_list', title: "微妙な者一覧", users: @event.subtles, label_class: "info"
-
+      = link_to '編集', edit_group_event_path(@group, @event), class: 'btn btn-primary'
+    '  
+    = @event.title
+.row.tabbable.tabs-left
+  ul.nav.nav-tabs
+    li.active
+      a href='#detail' data-toggle="tab" 詳細情報
+    li
+      a href='#kpt' data-toggle="tab" KPT
+  .tab-content
+    .tab-pane.active#detail
+      = render 'event_detail'
+    .tab-pane#kpt
+      = render 'event_kpt'

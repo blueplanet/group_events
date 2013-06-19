@@ -10,7 +10,11 @@ class EventsController < ApplicationController
     @event.event_users.create user: current_user, 
                               join_type: params[:join_type]
 
-    redirect_to group_event_path(@group, @event)
+
+    respond_to do |format|
+      format.html { redirect_to group_event_path(@group, @event) }
+      format.js
+    end
   end
 
   def new
@@ -23,10 +27,13 @@ class EventsController < ApplicationController
 
   def create_kpt
     @kpt = @event.kpts.build(post_kpt_params)
-    if @kpt.save
-      redirect_to [@group, @event]
-    else
-      render :show
+    respond_to do |format|
+      if @kpt.save
+        format.html { redirect_to [@group, @event] }
+        format.js
+      else
+        format.html { render :show }
+      end
     end
   end
 

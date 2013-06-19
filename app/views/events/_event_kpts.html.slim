@@ -1,0 +1,14 @@
+.span5
+  .row#keep
+    .alert.alert-success
+      h3 Keep
+      = render 'kpts', kpts: event.keeps
+  .row#problem
+    .alert.alert-block
+      h3 Problem
+      = render 'kpts', kpts: event.problems
+.span5
+  #try
+    .alert.alert-info
+      h3 Try
+      = render 'kpts', kpts: event.trys 
