@@ -23,10 +23,13 @@ class EventsController < ApplicationController
 
   def create_kpt
     @kpt = @event.kpts.build(post_kpt_params)
-    if @kpt.save
-      redirect_to [@group, @event]
-    else
-      render :show
+    respond_to do |format|
+      if @kpt.save
+        format.html { redirect_to [@group, @event] }
+        format.js
+      else
+        format.html { render :show }
+      end
     end
   end
 
