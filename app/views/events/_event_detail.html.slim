@@ -1,4 +1,4 @@
-.row.span8
+.span8
   .row
     span.label.label-success 日時 
     h3= "#{@event.date.strftime("%Y-%m-%d")} #{@event.time}"
@@ -8,3 +8,18 @@
   p.row
     span.label.label-success 内容
     = markdown(@event.content)
+.span2
+  .row
+    - if current_user && @event.group.member_ids.include?(current_user.id)
+      .btn-group
+        = link_to_unless @event.participants.include?(current_user), "参加", join_group_event_path(@group, @event, join_type: Event::JOIN), class: 'btn btn-success'
+        = link_to_unless @event.subtles.include?(current_user), "微妙", join_group_event_path(@group, @event, join_type: Event::SUBTLE), class: 'btn btn-warning'
+        = link_to_unless @event.absentees.include?(current_user), "欠席", join_group_event_path(@group, @event, join_type: Event::ABSENCE), class: 'btn'
+  hr.row
+  .row
+    #participants
+      = render 'user_list', title: "参加者一覧", users: @event.participants, label_class: "label-success"
+    #subtles
+      = render 'user_list', title: "微妙な者一覧", users: @event.subtles, label_class: "label-warning"
+    #absentees
+      = render 'user_list', title: "欠席者一覧", users: @event.absentees, label_class: ""
