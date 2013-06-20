@@ -4,13 +4,12 @@ class EventsController < ApplicationController
 
   def join
     if join_info = @event.event_users.where(user: current_user).first
-      join_info.delete
+      join_info.update(join_type: params[:join_type])
+    else
+      @event.event_users.create user: current_user, 
+                                join_type: params[:join_type]
     end
     
-    @event.event_users.create user: current_user, 
-                              join_type: params[:join_type]
-
-
     respond_to do |format|
       format.html { redirect_to group_event_path(@group, @event) }
       format.js
