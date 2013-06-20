@@ -1,3 +1,7 @@
 ul
   - kpts.each do |kpt|
-    li= kpt.content
+    li
+      - if can_delete
+        = link_to 'x', delete_kpt_group_event_path(@group, @event, kpt_id: kpt), method: :delete, remote: true
+      '
+      = kpt.content
