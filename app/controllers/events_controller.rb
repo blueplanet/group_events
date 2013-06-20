@@ -41,7 +41,10 @@ class EventsController < ApplicationController
     @kpt = Kpt.find(params[:kpt_id])
     @kpt.destroy
 
-    redirect_to [@group, @event]
+    respond_to do |format|
+      format.html { redirect_to [@group, @event] }
+      format.js
+    end
   end
 
   def create
