@@ -1,5 +1,15 @@
 require 'spec_helper'
 
+shared_examples_for '削除権限なし' do
+  scenario '削除リンクが表示されない' do
+    visit group_event_path(group, event)
+
+    within '#kpts' do
+      page.should_not have_link 'x'
+    end
+  end
+end
+
 feature 'グループメンバーは、KPTを削除出来る' do
   let(:group) { FactoryGirl.create(:group_event) }
   let(:event) { group.events.sample }
@@ -30,9 +40,14 @@ feature 'グループメンバーは、KPTを削除出来る' do
         }.to change(Kpt, :count).by(-1)
       end
     end
+
+    context "グループメンバーではない場合" do
+      it_behaves_like '削除権限なし'
+    end
   end
 
   context "ログインしてない場合" do
-    
+    it_behaves_like '削除権限なし'
   end
 end
+

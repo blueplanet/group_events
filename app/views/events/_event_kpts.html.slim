@@ -1,14 +1,15 @@
+- can_delete = current_user && event.group.members.include?(current_user)
 .span5
   .row#keep
     .alert.alert-success
       h3 Keep
-      = render 'kpts', kpts: event.keeps
+      = render 'kpts', kpts: event.keeps, can_delete: can_delete
   .row#problem
     .alert.alert-block
       h3 Problem
-      = render 'kpts', kpts: event.problems
+      = render 'kpts', kpts: event.problems, can_delete: can_delete
 .span5
   #try
     .alert.alert-info
       h3 Try
-      = render 'kpts', kpts: event.trys 
+      = render 'kpts', kpts: event.trys, can_delete: can_delete

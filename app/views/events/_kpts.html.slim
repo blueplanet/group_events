@@ -1,5 +1,7 @@
 ul
   - kpts.each do |kpt|
     li
-      = link_to 'x', delete_kpt_group_event_path(@group, @event, kpt_id: kpt), method: :delete, class: 'btn btn-danger btn-mini'
+      - if can_delete
+        = link_to 'x', delete_kpt_group_event_path(@group, @event, kpt_id: kpt), method: :delete
+      '
       = kpt.content
