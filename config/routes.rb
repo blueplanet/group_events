@@ -4,6 +4,7 @@ GroupEvents::Application.routes.draw do
       member do
         get 'join'
         post 'create_kpt'
+        delete 'delete_kpt'
       end
     end
 

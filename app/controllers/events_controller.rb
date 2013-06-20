@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :set_group, only: [:show, :join, :new, :edit, :create, :update, :create_kpt]
-  before_action :set_event, only: [:show, :join, :edit, :update, :create_kpt]
+  before_action :set_group, only: [:show, :join, :new, :edit, :create, :update, :create_kpt, :delete_kpt]
+  before_action :set_event, only: [:show, :join, :edit, :update, :create_kpt, :delete_kpt]
 
   def join
     if join_info = @event.event_users.where(user: current_user).first
@@ -35,6 +35,13 @@ class EventsController < ApplicationController
         format.html { render :show }
       end
     end
+  end
+
+  def delete_kpt
+    @kpt = Kpt.find(params[:kpt_id])
+    @kpt.destroy
+
+    redirect_to [@group, @event]
   end
 
   def create
