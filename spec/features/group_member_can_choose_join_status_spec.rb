@@ -95,5 +95,22 @@ feature 'グループメンバーは、イベントの参加状況を選択出�
         end
       end
     end
+
+    context "最初の場合" do
+      scenario '参加情報が新規作成される' do
+        expect {
+          click_link '微妙'
+        }.to change(EventUser, :count).by(1)
+      end
+    end
+
+    context "２回目以降の編集の場合" do
+      before { click_link '微妙' }
+      scenario '参加情報が更新される' do
+        expect {
+          click_link '参加'
+        }.to_not change(EventUser, :count)
+      end
+    end
   end
 end
