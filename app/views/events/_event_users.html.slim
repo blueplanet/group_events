@@ -1,9 +1,9 @@
 .row
   - if current_user && @event.group.member_ids.include?(current_user.id)
     .form-actions.btn-group
-      = link_to_unless @event.participants.include?(current_user), "参加", join_group_event_path(@group, @event, join_type: Event::JOIN), class: 'btn btn-success', remote: true
-      = link_to_unless @event.subtles.include?(current_user), "微妙", join_group_event_path(@group, @event, join_type: Event::SUBTLE), class: 'btn btn-warning', remote: true
-      = link_to_unless @event.absentees.include?(current_user), "欠席", join_group_event_path(@group, @event, join_type: Event::ABSENCE), class: 'btn', remote: true
+      = link_to "参加", join_group_event_path(@group, @event, join_type: Event::JOIN), class: 'btn btn-success', remote: true, disabled: @event.participants.include?(current_user)
+      = link_to "微妙", join_group_event_path(@group, @event, join_type: Event::SUBTLE), class: 'btn btn-warning', remote: true, disabled: @event.subtles.include?(current_user)
+      = link_to "欠席", join_group_event_path(@group, @event, join_type: Event::ABSENCE), class: 'btn', remote: true, disabled: @event.absentees.include?(current_user)
 .row
   #participants
     = render 'user_list', title: "参加者一覧", users: @event.participants, label_class: "label-success"
