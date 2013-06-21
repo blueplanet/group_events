@@ -13,7 +13,7 @@ feature 'グループメンバーは、参加状況を編集出来る' do
     background { click_link '参加' }
 
     scenario '欠席と微妙リンクが表示される' do
-      page.should_not have_link '参加'
+      page.should have_css "a[disabled]", text: '参加'
       page.should have_link '欠席'
       page.should have_link '微妙'
     end
@@ -24,7 +24,7 @@ feature 'グループメンバーは、参加状況を編集出来る' do
 
     scenario '参加と微妙リンクが表示される' do
       page.should have_link '参加'
-      page.should_not have_link '欠席'
+      page.should have_css "a[disabled]", text: '欠席'
       page.should have_link '微妙'
     end
   end
@@ -35,7 +35,7 @@ feature 'グループメンバーは、参加状況を編集出来る' do
     scenario '参加と欠席リンクが表示される' do
       page.should have_link '参加'
       page.should have_link '欠席'
-      page.should_not have_link '微妙'
+      page.should have_css "a[disabled]", text: '微妙'
     end
   end
 end
