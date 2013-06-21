@@ -17,7 +17,7 @@ html
               img.icon src="#{current_user.img_url}"
               = current_user.name
               ' ,
-              = link_to 'ログアウト', sign_out_path, method: :post
+              = link_to 'ログアウト', sign_out_path, method: :delete
             - else 
               = link_to 'Twitterでログイン', '/auth/twitter'
 
