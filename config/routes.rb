@@ -14,6 +14,7 @@ GroupEvents::Application.routes.draw do
   end
 
   get "/auth/:provider/callback", controller: 'sessions', action: 'create'
+  post "sign_out", controller: 'sessions', action: 'destroy'
   root to: 'groups#index'
   get "ui(/:action)", controller: 'ui'
 end
