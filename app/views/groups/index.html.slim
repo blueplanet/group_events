@@ -7,7 +7,14 @@
   .row
     - @groups.each do |group|
       .form-actions
-        .span3
+        .span6
+          .row
+            h2= link_to group.name, group
+          .row
+            label.label.label-info 説明
+            '
+            = group.description
+        .span3.pull-right
           .row
             .span1
               label.label.label-info メンバー
@@ -23,10 +30,3 @@
               label.label.label-info 最新更新
             .span2
               = "#{time_ago_in_words(group.updated_at)} ago"
-        .span6
-          .row
-            h2= link_to group.name, group
-          .row
-            label.label.label-info 説明
-            '
-            = group.description
