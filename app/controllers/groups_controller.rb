@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :join]
   
   def index
-    @groups = Group.order(:updated_at).limit(5)
+    @groups = Group.order("updated_at DESC").limit(5)
   end
 
   def join

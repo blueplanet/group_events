@@ -15,13 +15,13 @@ feature 'ゲストは、グループ一覧を見える' do
     end
 
     scenario '各グループの名称が表示される' do
-      Group.order(:updated_at).limit(5).each do |group|
+      Group.order("updated_at DESC").limit(5).each do |group|
         page.should have_content group.name
       end
     end
 
     scenario 'グループ名称をクリックすると、グループ詳細へ遷移される' do
-      group = Group.order(:updated_at).limit(5).sample
+      group = Group.order("updated_at DESC").limit(5).sample
 
       click_link "#{group.name}"
       page.current_path.should == group_path(group)
