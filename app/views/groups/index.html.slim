@@ -6,9 +6,24 @@
         = link_to 'グループ新規', new_group_path, class: 'btn btn-primary pull-right'
   .row
     - @groups.each do |group|
-      .row.group_item
-        .span4= link_to group.name, group
-        .span1
-          center
-            span.badge.badge-success= group.events.count
-        .span2= "#{time_ago_in_words(group.updated_at)} ago"
+      .form-actions
+        .span3
+          .row
+            .span1
+              label.label.label-info メンバー
+            .span1
+              label.label.label-success= group.members.count
+          .row
+            .span1
+              label.label.label-info イベント
+            .span1
+              label.label.label-success= group.events.count
+          .row
+            .span1
+              label.label.label-info 最新更新
+            .span2
+              = "#{time_ago_in_words(group.updated_at)} ago"
+        .span6
+          .row
+            h2= link_to group.name, group
+          .row= group.description
