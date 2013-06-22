@@ -26,4 +26,7 @@
         .span6
           .row
             h2= link_to group.name, group
-          .row= group.description
+          .row
+            label.label.label-info 説明
+            '
+            = group.description
