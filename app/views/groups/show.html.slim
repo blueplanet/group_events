@@ -27,7 +27,4 @@
   #members.span6
     .row
       h2 メンバー一覧
-    - @group.members.each do |member|
-      .row.user_info
-        img.icon src="#{member.img_url}"
-        = member.name
+    = render partial: "user", collection: @group.members 
