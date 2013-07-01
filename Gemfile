@@ -11,6 +11,8 @@ gem 'bootstrap-sass'
 gem 'redcarpet'
 gem 'bootstrap-datepicker-rails'
 
+gem 'font-awesome-rails'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'

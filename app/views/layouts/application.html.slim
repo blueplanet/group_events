@@ -13,13 +13,27 @@ html
           = link_to "GroupEvents", root_path, class: 'brand'
 
           .nav.navbar-text.pull-right
-            - if current_user
-              img.icon src="#{current_user.img_url}"
-              = current_user.name
-              ' ,
-              = link_to 'ログアウト', sign_out_path, method: :delete
-            - else 
-              = link_to 'Twitterでログイン', '/auth/twitter'
+            ul.nav
+              li
+                = link_to "http://github.com/blueplanet/group_events"
+                  i.icon-github.icon-large
+                  '
+                  |Source on github
+              li
+                = link_to 'https://travis-ci.org/blueplanet/group_events'
+                  img src="https://travis-ci.org/blueplanet/group_events.png?branch=master"
+              li
+                = link_to "https://coveralls.io/r/blueplanet/group_events"
+                  img src="https://coveralls.io/repos/blueplanet/group_events/badge.png" 
+              li
+                - if current_user
+                  img.icon src="#{current_user.img_url}"
+                  = current_user.name
+                  ' ,
+                  = link_to 'ログアウト', sign_out_path, method: :delete
+                - else 
+                  = link_to 'Twitterでログイン', '/auth/twitter'
 
-    .container
+    section.row.container
       = yield
+
