@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.1.2'
+
 gem 'rails', '4.0.0'
 
 gem 'slim-rails'
@@ -26,6 +28,7 @@ group :development do
   gem 'growl'
   gem 'pry-rails'
   gem 'launchy'
+  gem 'parallel_tests'
 end
 
 group :test do
@@ -47,5 +50,3 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
-ruby "2.0.0"
